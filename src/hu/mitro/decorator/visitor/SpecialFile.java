@@ -19,4 +19,8 @@ public class SpecialFile extends Item {
 		return "---- " + name + " | " + size + " | " + attributes.toString();
 	}
 
+	public void accept(Visitor countingVisitor) {
+		countingVisitor.visit(this);
+	}
+
 }

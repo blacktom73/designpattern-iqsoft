@@ -8,5 +8,6 @@ public abstract class Item {
 		this.name = name;
 	}
 
+	public abstract void accept(Visitor visitor);
 
 }

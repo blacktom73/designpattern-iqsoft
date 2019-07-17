@@ -34,11 +34,9 @@ public class Directory extends Item {
 		return stringBuilder.toString();
 	}
 
-	protected void accept(CountingVisitor countingVisitor) {
+	public void accept(Visitor countingVisitor) {
 		countingVisitor.visit(this);
+		subDirectories.forEach(item -> item.accept(countingVisitor));
 	}
 
-	protected void accept(SummingVisitor summingVisitor) {
-		summingVisitor.visit(this);
-	}
 }

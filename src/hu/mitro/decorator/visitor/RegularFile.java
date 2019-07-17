@@ -14,4 +14,9 @@ public class RegularFile extends Item {
 		return "---- " + name + " | " + size;
 	}
 
+	public void accept(Visitor countingVisitor) {
+		countingVisitor.visit(this);
+	}
+
+
 }
