@@ -1,4 +1,4 @@
-package hu.mitro.decorator.compozit;
+package hu.mitro.decorator.visitor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,5 +32,13 @@ public class Directory extends Item {
 			}
 		}
 		return stringBuilder.toString();
+	}
+
+	protected void accept(CountingVisitor countingVisitor) {
+		countingVisitor.visit(this);
+	}
+
+	protected void accept(SummingVisitor summingVisitor) {
+		summingVisitor.visit(this);
 	}
 }

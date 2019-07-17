@@ -1,4 +1,4 @@
-package hu.mitro.decorator.atmmachine;
+package hu.mitro.decorator.chainofresponsibility.atmmachine;
 
 public class BankNote2000 extends Detector {
 
