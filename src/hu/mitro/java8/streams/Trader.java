@@ -1,4 +1,4 @@
-package hu.mitro.java8.streams.snippets;
+package hu.mitro.java8.streams;
 
 public class Trader {
 

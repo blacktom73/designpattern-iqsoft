@@ -1,4 +1,4 @@
-package hu.mitro.java8.streams.snippets;
+package hu.mitro.java8.streams;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -31,33 +31,32 @@ public class Program {
 				new Transaction(alan, 2012, 950)
 		);
 
+		//	1. Find all transactions in the year 2011 and sort them by value (small to high).
+		// TODO sorting
 		List<Transaction> tr2011 = transactions.stream()
 				.filter(transaction -> transaction.getYear() == 2011)
+//				.sorted()
 				.collect(Collectors.toList());
 		System.out.println(tr2011);
 
+		//	2. What are all the unique cities where the traders work?
 		List<String> uniqueCities = transactions.stream()
 				.map(transaction -> transaction.getTrader().getCity())
 				.distinct()
 				.collect(Collectors.toList());
 		System.out.println(uniqueCities);
 
-		Comparator<Trader> traderComparator = new Comparator<Trader>() {
+		//	3. Find all traders from Cambridge and sort them by name.
+		Comparator<Trader> traderComparatorByName = (o1, o2) -> o1.getName().compareTo(o2.getName());
 
-			@Override
-			public int compare(Trader o1, Trader o2) {
-				return o1.getName().compareTo(o2.getName());
-			}
-		};
-
-		List<Trader> tradersCambridge = transactions.stream()
-				.filter(transaction -> transaction.getTrader().getCity() == "Cambridge")
+		List<Trader> cambridgeTraders = transactions.stream()
 				.map(transaction -> transaction.getTrader())
-				.sorted(traderComparator)
+				.sorted(traderComparatorByName)
 				.distinct()
 				.collect(Collectors.toList());
-		System.out.println(tradersCambridge);
+		System.out.println(cambridgeTraders);
 
+		//	4. Return a string of all traders’ names sorted alphabetically.
 		List<String> traders = transactions.stream()
 				.map(transaction -> transaction.getTrader().getName())
 				.sorted()
@@ -65,10 +64,31 @@ public class Program {
 				.collect(Collectors.toList());
 		System.out.println(traders);
 
+		//	5. Are any traders based in Milan?
 		boolean isAnyInMilan = transactions.stream()
 				.map(transaction -> transaction.getTrader().getCity())
-				.anyMatch(city-> city.equals("Milan"));
+				.anyMatch(city -> city.equals("Milan"));
 		System.out.println(isAnyInMilan);
+
+		//	6. Print all transactions’ values from the traders living in Cambridge.
+		List<Integer> values = transactions.stream()
+				.filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+				.map(transaction -> transaction.getValue())
+				.collect(Collectors.toList());
+		System.out.println(values);
+
+		//	7. What’s the highest value of all the transactions?
+		Integer highestValue = transactions.stream()
+				.map(transaction -> transaction.getValue())
+				.max(Integer::compare).get();
+		System.out.println(highestValue);
+
+		//	8. Find the transaction with the smallest value.
+		// TODO
+		Transaction smallestValue = transactions.stream()
+				.map(transaction -> transaction)
+				.min((t1, t2)-> t1.getValue()).get();
+		System.out.println(smallestValue);
 
 	}
 }
