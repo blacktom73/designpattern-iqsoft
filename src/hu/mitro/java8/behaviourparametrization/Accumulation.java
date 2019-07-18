@@ -1,5 +1,9 @@
 package hu.mitro.java8.behaviourparametrization;
 
+import java.util.function.BiFunction;
+import java.util.function.IntPredicate;
+
+
 public class Accumulation {
 
 	private int[] values;
@@ -29,5 +33,15 @@ public class Accumulation {
 			}
 		}
 		return init;
+	}
+
+	public int accum(BiFunction<Integer, Integer, Integer> operation, IntPredicate intPredicate){
+		int result = 0;
+		for (int i = 0; i < values.length; i++) {
+			if (intPredicate.test(values[i])) {
+				result = operation.apply(result, values[i]);
+			}
+		}
+		return result;
 	}
 }

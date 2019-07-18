@@ -1,5 +1,9 @@
 package hu.mitro.java8.behaviourparametrization;
 
+import java.util.function.BiFunction;
+import java.util.function.IntPredicate;
+
+
 public class Program {
 
 	static boolean isPrime(int n) {
@@ -50,5 +54,11 @@ public class Program {
 		// With lambda expressions
 		System.out.println(accumulation.accum(0, (x, y) -> x + y, i -> i % 2 == 0));
 		System.out.println(accumulation.accum(0, addOperation, evenPredicate));
+
+		// Functional interfaces
+		BiFunction<Integer, Integer, Integer> biFunction = (i, j) -> i + j;
+		IntPredicate intPredicate = i -> i % 2 == 0;
+		System.out.println(accumulation.accum(biFunction, intPredicate));
+
 	}
 }
