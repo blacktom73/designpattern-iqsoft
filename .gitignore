@@ -1,6 +1,6 @@
 inv-test-plugins-parent/test-client-db/subscriber_billing_info_*.txt
 
-*out/*
+
 **/.idea/*
 *target/*
 */classes/*
