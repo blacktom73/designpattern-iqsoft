@@ -1,4 +1,4 @@
-package hu.mitro.java8.fruitfactory;
+package hu.mitro.java8.behaviourparametrization.fruitfactory;
 
 public class Banana extends Fruit {
 

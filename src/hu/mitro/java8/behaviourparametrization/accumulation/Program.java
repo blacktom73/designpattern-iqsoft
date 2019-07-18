@@ -1,4 +1,4 @@
-package hu.mitro.java8.behaviourparametrization;
+package hu.mitro.java8.behaviourparametrization.accumulation;
 
 import java.util.function.BiFunction;
 import java.util.function.IntPredicate;

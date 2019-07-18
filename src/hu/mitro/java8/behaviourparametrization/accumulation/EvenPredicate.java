@@ -1,4 +1,4 @@
-package hu.mitro.java8.behaviourparametrization;
+package hu.mitro.java8.behaviourparametrization.accumulation;
 
 public class EvenPredicate implements Predicate {
 
