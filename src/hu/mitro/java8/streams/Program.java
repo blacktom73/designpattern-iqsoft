@@ -23,19 +23,18 @@ public class Program {
 		Trader brian = new Trader("Brian", "Cambridge");
 
 		List<Transaction> transactions = Arrays.asList(
-				new Transaction(brian, 2011, 300),
 				new Transaction(raoul, 2012, 1000),
 				new Transaction(raoul, 2011, 400),
 				new Transaction(mario, 2012, 710),
+				new Transaction(brian, 2011, 300),
 				new Transaction(mario, 2012, 700),
 				new Transaction(alan, 2012, 950)
 		);
 
 		//	1. Find all transactions in the year 2011 and sort them by value (small to high).
-		// TODO sorting
 		List<Transaction> tr2011 = transactions.stream()
 				.filter(transaction -> transaction.getYear() == 2011)
-//				.sorted()
+				.sorted(Comparator.comparingInt(Transaction::getValue))
 				.collect(Collectors.toList());
 		System.out.println(tr2011);
 
@@ -48,7 +47,6 @@ public class Program {
 
 		//	3. Find all traders from Cambridge and sort them by name.
 		Comparator<Trader> traderComparatorByName = (o1, o2) -> o1.getName().compareTo(o2.getName());
-
 		List<Trader> cambridgeTraders = transactions.stream()
 				.map(transaction -> transaction.getTrader())
 				.sorted(traderComparatorByName)
@@ -80,14 +78,15 @@ public class Program {
 		//	7. What’s the highest value of all the transactions?
 		Integer highestValue = transactions.stream()
 				.map(transaction -> transaction.getValue())
-				.max(Integer::compare).get();
+				.max(Integer::compare)
+				.get();
 		System.out.println(highestValue);
 
 		//	8. Find the transaction with the smallest value.
 		// TODO
 		Transaction smallestValue = transactions.stream()
-				.map(transaction -> transaction)
-				.min((t1, t2)-> t1.getValue()).get();
+				.min(Comparator.comparingInt(Transaction::getValue))
+				.get();
 		System.out.println(smallestValue);
 
 	}
