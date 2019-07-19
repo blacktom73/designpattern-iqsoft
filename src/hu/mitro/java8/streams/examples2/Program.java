@@ -59,18 +59,34 @@ public class Program {
 		System.out.println(collect);
 
 		//	7. Anagrams of a word
-
-
+		//		String ordered = order(word);
+		////		String result = lines.filter(w->ordered.equals(order(w)))
+		////				.collect(Collectors.joining(", "));
+		////		System.out.println(result);
 
 		//	8. Anagram groups with a given number of items
-
-
+		//		words.stream().collect(Collectors.groupingBy(w->order(w)))
+		//				.values().stream().filter(l->l.size() == groupSize)
+		//				.map(List::toString)
+		//				.forEach(System.out::println);
 
 		//	9. Frequency of anagram groups
+		//		words.stream().collect(Collectors.groupingBy(s->order(s), Collectors.counting()))
+		//				.values().stream()
+		//				.collect(Collectors.groupingBy(c->c, Collectors.counting()))
+		//				.forEach((key, value)->System.out.println(key + ": " + value));
 
-
-		
 		//	10. Ratio of words with and without anagrams
+		//		lines.collect(Collectors.groupingBy(s->order(s), Collectors.counting()))
+		//				.values().stream()
+		//				.collect(Collectors.groupingBy(c->c!=1, Collectors.counting()))
+		//				.forEach((key, value)->System.out.println(key + ": " + value));
+
+	}
+
+	private String order(String s) {
+		return s.chars().sorted().mapToObj(String::valueOf)
+				.collect(Collectors.joining());
 	}
 
 	//		long uniqueWords = 0;
