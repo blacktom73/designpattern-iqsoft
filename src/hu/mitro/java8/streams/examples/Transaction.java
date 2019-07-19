@@ -1,4 +1,4 @@
-package hu.mitro.java8.streams;
+package hu.mitro.java8.streams.examples;
 
 public class Transaction {
 

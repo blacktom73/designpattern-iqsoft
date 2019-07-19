@@ -20,3 +20,21 @@ Trader raoul = new Trader("Raoul", "Cambridge");
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
+
+Dictionary example
+- Command pattern
+- Singleton pattern
+
+1. Frequency of word length
+2. Frequency of character
+3. Number of characters
+4. Length of the longest word
+5. Length of the shortest word
+6. Average word length
+7. Anagrams of a word
+8. Anagram groups with a given number of items
+9. Frequency of anagram groups
+10. Ratio of words with and without anagrams
+
+https://docs.oracle.com/javafx/2/charts/bar-chart.htm#CIHJFHDE
+bar chart example

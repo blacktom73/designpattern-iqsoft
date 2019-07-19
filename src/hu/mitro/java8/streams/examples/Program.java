@@ -1,4 +1,4 @@
-package hu.mitro.java8.streams;
+package hu.mitro.java8.streams.examples;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -49,18 +49,27 @@ public class Program {
 		Comparator<Trader> traderComparatorByName = (o1, o2) -> o1.getName().compareTo(o2.getName());
 		List<Trader> cambridgeTraders = transactions.stream()
 				.map(transaction -> transaction.getTrader())
-				.sorted(traderComparatorByName)
+				.filter(trader -> trader.getCity().equals("Cambridge"))
 				.distinct()
+				.sorted(traderComparatorByName)
 				.collect(Collectors.toList());
 		System.out.println(cambridgeTraders);
 
 		//	4. Return a string of all traders’ names sorted alphabetically.
 		List<String> traders = transactions.stream()
 				.map(transaction -> transaction.getTrader().getName())
-				.sorted()
 				.distinct()
+				.sorted()
 				.collect(Collectors.toList());
+
+		String traders2 = transactions.stream()
+				.map(transaction -> transaction.getTrader().getName())
+				.distinct()
+				.sorted()
+				.reduce("", (n1, n2) -> n1.concat(n2) + " ");
+
 		System.out.println(traders);
+		System.out.println(traders2);
 
 		//	5. Are any traders based in Milan?
 		boolean isAnyInMilan = transactions.stream()
@@ -83,7 +92,6 @@ public class Program {
 		System.out.println(highestValue);
 
 		//	8. Find the transaction with the smallest value.
-		// TODO
 		Transaction smallestValue = transactions.stream()
 				.min(Comparator.comparingInt(Transaction::getValue))
 				.get();
