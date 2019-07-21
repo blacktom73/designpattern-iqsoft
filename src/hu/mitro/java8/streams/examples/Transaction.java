@@ -27,6 +27,6 @@ public class Transaction {
 	public String toString() {
 		return "{" + this.trader + ", " +
 				"year: " + this.year + ", " +
-				"value:" + this.value + "}";
+				"value: " + this.value + "}";
 	}
 }
