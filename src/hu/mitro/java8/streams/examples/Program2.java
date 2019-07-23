@@ -60,13 +60,24 @@ public class Program2 {
 				.reduce("", (name1, name2) -> name1.concat(name2) + " "));
 
 		//	5. Are any traders based in Milan?
+		System.out.println(transactions.stream()
+				.anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan")));
 
 		//	6. Print all transactions’ values from the traders living in Cambridge.
+		transactions.stream()
+				.filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+				.map(transaction -> transaction.getValue())
+				.forEach(System.out::println);
 
 		//	7. What’s the highest value of all the transactions?
+		transactions.stream()
+				.max(Comparator.comparing(Transaction::getValue))
+				.ifPresent(transaction -> System.out.println(transaction.getValue()));
 
 		//	8. Find the transaction with the smallest value.
-
+		transactions.stream()
+				.min(Comparator.comparing(Transaction::getValue))
+				.ifPresent(System.out::println);
 	}
 
 }
